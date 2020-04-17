@@ -31,18 +31,11 @@
 
 
 
-
-
-
-
-
-
-
 @code {
     private ArtItem[] items;
 
     protected override async Task OnInitializedAsync()
     {
-        items = await ItemService.GetForecastAsync();
+        items = await ItemService.GetArtitemsAsync();
     }
 }

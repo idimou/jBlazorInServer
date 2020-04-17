@@ -1,0 +1,51 @@
+﻿@page "/userprofile"
+
+
+@using jBlazorInServer.Data
+@inject UserProfileService userProfileService
+
+
+<h3>UserProfile</h3>
+
+
+<table class="table">
+
+    <tbody>
+        <tr>
+            <td>Name</td>
+            <td>@userprofile.FirstName</td>
+        </tr>
+        <tr>
+            <td>Surname</td>
+            <td>@userprofile.LastName</td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td>@userprofile.email</td>
+        </tr>
+        <tr>
+            <td>Προτιμώ έργα με θέμα </td>
+            <td>
+                @foreach (var theme in userprofile.UserPreferedTheme.ToList<Theme>())
+                {
+                    @theme.ToString(); <text>, </text>
+                }
+                   
+                </td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+
+
+
+@code {
+    private jBlazorInServer.Data.UserProfile userprofile;
+
+    protected override async Task OnInitializedAsync()
+    {
+        userprofile = await userProfileService.GetUserProfileAsync(1);
+    }
+}
